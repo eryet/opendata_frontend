@@ -13,6 +13,7 @@ import Login from "./views/login/Login";
 import FirstPage from "./views/user/FirstPage";
 import UserDashboard from "./views/user/Dashboard";
 import Gateway from "./views/user/gateway/Gateway";
+import LineGraph from "./views/user/graph/LineGraph";
 
 const App = () => {
   return (
@@ -20,6 +21,9 @@ const App = () => {
       <Switch>
         <Route path="/gateway">
           <UserDashboard component={<Gateway />} />
+        </Route>
+        <Route path="/linegraph">
+          <UserDashboard component={<LineGraph />} />
         </Route>
         <Route path="/dashboard">
           <UserDashboard component={<FirstPage />} />

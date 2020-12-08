@@ -13,6 +13,10 @@ import {
   Divider,
   Drawer,
   FormLabel,
+  Badge,
+  Popover,
+  Button,
+  Typography,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
@@ -25,7 +29,7 @@ import TimelineSharpIcon from "@material-ui/icons/TimelineSharp";
 import NotificationsSharpIcon from "@material-ui/icons/NotificationsSharp";
 import AccountCircleSharpIcon from "@material-ui/icons/AccountCircleSharp";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   navbarDisplayFlex: {
     width: "100%",
     display: `flex`,
@@ -61,7 +65,10 @@ const useStyles = makeStyles({
   fullList: {
     width: "auto",
   },
-});
+  typography: {
+    padding: theme.spacing(2),
+  },
+}));
 
 const navLinks = [
   { title: `test`, path: `/dashboard` },
@@ -78,11 +85,12 @@ const sidebarGateway = [
 ];
 
 const sidebarChart = [
-  { title: `線性圖表`, path: `/dashboard`, component: <TimelineSharpIcon /> },
+  { title: `線性圖表`, path: `/linegraph`, component: <TimelineSharpIcon /> },
 ];
 
 const Header = () => {
   const [left, setLeft] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
   const classes = useStyles();
 
   const list = () => (
@@ -123,6 +131,16 @@ const Header = () => {
     </div>
   );
 
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const notificationOpen = Boolean(anchorEl);
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -154,12 +172,70 @@ const Header = () => {
             </List>
           </div>
           <div className={classes.navbarDisplayRight}>
-            <IconButton edge="false" color="inherit" aria-label="home">
-              <NotificationsSharpIcon fontSize="large" />
-            </IconButton>
-            <IconButton edge="false" color="inherit" aria-label="home">
-              <AccountCircleSharpIcon fontSize="large" />
-            </IconButton>
+            <>
+              <IconButton
+                aria-describedby={
+                  notificationOpen ? "simple-popover" : undefined
+                }
+                edge="false"
+                color="inherit"
+                aria-label="home"
+                onClick={handleClick}
+              >
+                <Badge color="secondary" overlap="circle" badgeContent={4}>
+                  <NotificationsSharpIcon fontSize="large" />
+                </Badge>
+              </IconButton>
+              <Popover
+                id={notificationOpen ? "simple-popover" : undefined}
+                open={notificationOpen}
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                anchorOrigin={{
+                  vertical: "center",
+                  horizontal: "center",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+              >
+                <Typography className={classes.typography}>
+                  Notification For User
+                </Typography>
+              </Popover>
+            </>
+            <>
+              <IconButton
+                aria-describedby={
+                  notificationOpen ? "simple-popover" : undefined
+                }
+                edge="false"
+                color="inherit"
+                aria-label="home"
+                onClick={handleClick}
+              >
+                <AccountCircleSharpIcon fontSize="large" />
+              </IconButton>
+              <Popover
+                id={notificationOpen ? "simple-popover" : undefined}
+                open={notificationOpen}
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                anchorOrigin={{
+                  vertical: "center",
+                  horizontal: "center",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+              >
+                <Typography className={classes.typography}>
+                  User Profile for user include link to setting
+                </Typography>
+              </Popover>
+            </>
           </div>
         </div>
       </Toolbar>

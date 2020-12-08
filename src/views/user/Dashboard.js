@@ -15,6 +15,7 @@ import Explore from "@material-ui/icons/Explore";
 // component
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import { Container } from "@material-ui/core";
 
 const Dashboard = (props) => {
   //   const [value, setValue] = useState();
@@ -26,7 +27,7 @@ const Dashboard = (props) => {
   return (
     <>
       <Header />
-      {props.component}
+      <Container>{props.component}</Container>
       <Footer />
     </>
   );
