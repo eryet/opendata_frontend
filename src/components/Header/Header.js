@@ -80,8 +80,8 @@ const sidebarTop = [
 ];
 
 const sidebarGateway = [
-  { title: `個人資料`, path: `/gateway`, component: <StorageSharpIcon /> },
-  { title: `Sensor狀態`, path: `/dashboard`, component: <MemorySharpIcon /> },
+  { title: `Gateway狀態`, path: `/gateway`, component: <StorageSharpIcon /> },
+  { title: `Sensor表格`, path: `/sensor`, component: <MemorySharpIcon /> },
 ];
 
 const sidebarChart = [
@@ -91,6 +91,7 @@ const sidebarChart = [
 const Header = () => {
   const [left, setLeft] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorE2, setAnchorE2] = useState(null);
   const classes = useStyles();
 
   const list = () => (
@@ -135,11 +136,20 @@ const Header = () => {
     setAnchorEl(event.currentTarget);
   };
 
+  const handleClick2 = (event) => {
+    setAnchorE2(event.currentTarget);
+  };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
 
+  const handleClose2 = () => {
+    setAnchorE2(null);
+  };
+
   const notificationOpen = Boolean(anchorEl);
+  const notificationOpen2 = Boolean(anchorE2);
 
   return (
     <AppBar position="static">
@@ -207,21 +217,19 @@ const Header = () => {
             </>
             <>
               <IconButton
-                aria-describedby={
-                  notificationOpen ? "simple-popover" : undefined
-                }
+                aria-describedby={2 ? "simple-popover" : undefined}
                 edge="false"
                 color="inherit"
                 aria-label="home"
-                onClick={handleClick}
+                onClick={handleClick2}
               >
                 <AccountCircleSharpIcon fontSize="large" />
               </IconButton>
               <Popover
-                id={notificationOpen ? "simple-popover" : undefined}
-                open={notificationOpen}
-                anchorEl={anchorEl}
-                onClose={handleClose}
+                id={notificationOpen2 ? "simple-popover" : undefined}
+                open={notificationOpen2}
+                anchorEl={anchorE2}
+                onClose={handleClose2}
                 anchorOrigin={{
                   vertical: "center",
                   horizontal: "center",

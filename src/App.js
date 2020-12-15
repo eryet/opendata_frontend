@@ -14,11 +14,15 @@ import FirstPage from "./views/user/FirstPage";
 import UserDashboard from "./views/user/Dashboard";
 import Gateway from "./views/user/gateway/Gateway";
 import LineGraph from "./views/user/graph/LineGraph";
+import Sensor from "./views/user/sensor/Sensor";
 
 const App = () => {
   return (
     <div>
       <Switch>
+        <Route path="/sensor">
+          <UserDashboard component={<Sensor />} />
+        </Route>
         <Route path="/gateway">
           <UserDashboard component={<Gateway />} />
         </Route>

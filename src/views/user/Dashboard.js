@@ -28,7 +28,6 @@ const Dashboard = (props) => {
     <>
       <Header />
       <Container>{props.component}</Container>
-      <Footer />
     </>
   );
 };
