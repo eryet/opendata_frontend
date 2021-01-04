@@ -5,7 +5,7 @@ import Link from "@material-ui/core/Link";
 const Copyright = () => {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"版權所有 © "}
+      {"國立暨南大學版權所有 © "}
       <Link color="inherit" href="https://material-ui.com/"></Link>{" "}
       {new Date().getFullYear()}
       {"."}

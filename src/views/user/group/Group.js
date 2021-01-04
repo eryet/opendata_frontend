@@ -4,7 +4,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import EnhancedTable from "./components/EnhancedTable";
 import makeData from "./makeData";
 
-const Gateway = () => {
+const Group = () => {
   const columns = React.useMemo(
     () => [
       {
@@ -77,4 +77,4 @@ const Gateway = () => {
   );
 };
 
-export default Gateway;
+export default Group;

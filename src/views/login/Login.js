@@ -23,41 +23,44 @@ const Login = () => {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
-          登入
-        </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="username"
-            label="使用者名稱"
-            name="username"
-            autoComplete="username"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="密碼"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="記住我"
-          />
-          <Link to="/dashboard">
+    <div className={classes.loginimage}>
+      <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justify="center"
+        style={{ minHeight: "100vh" }}
+      >
+        <CssBaseline />
+        <div className={classes.paper}>
+          <h1 className={classes.loginfont}>登入</h1>
+          <form className={classes.form} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="使用者名稱"
+              name="username"
+              autoComplete="username"
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="密碼"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
             <Button
+              component={Link}
+              to={"/dashboard"}
               type="submit"
               fullWidth
               variant="contained"
@@ -66,18 +69,18 @@ const Login = () => {
             >
               登入
             </Button>
-          </Link>
-          <Grid container>
-            <Grid item xs>
-              <a href="#">忘記密碼</a>
+            <Grid container>
+              <Grid item xs>
+                <a href="/forgotpassword">忘記密碼</a>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
+          </form>
+          <Box mt={8}>
+            <Copyright />
+          </Box>
+        </div>
+      </Grid>
+    </div>
   );
 };
 

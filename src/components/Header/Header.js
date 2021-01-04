@@ -81,11 +81,25 @@ const sidebarTop = [
 
 const sidebarGateway = [
   { title: `Gateway狀態`, path: `/gateway`, component: <StorageSharpIcon /> },
+  {
+    title: `Gateway組別`,
+    path: `/gatewaygroup`,
+    component: <MemorySharpIcon />,
+  },
   { title: `Sensor表格`, path: `/sensor`, component: <MemorySharpIcon /> },
+  { title: `Test`, path: `/test`, component: <MemorySharpIcon /> },
 ];
 
 const sidebarChart = [
   { title: `線性圖表`, path: `/linegraph`, component: <TimelineSharpIcon /> },
+];
+
+const sidebarOpenData = [
+  {
+    title: `已公開的Gateway`,
+    path: `/opengateway`,
+    component: <MemorySharpIcon />,
+  },
 ];
 
 const Header = () => {
@@ -122,6 +136,15 @@ const Header = () => {
       <h1 className={classes.navbarLabel}>{"圖表"}</h1>
       <List>
         {sidebarChart.map((data, index) => (
+          <ListItem button key={index} component={Link} to={data.path}>
+            <ListItemIcon>{data.component}</ListItemIcon>
+            <ListItemText primary={data.title} />
+          </ListItem>
+        ))}
+      </List>
+      <h1 className={classes.navbarLabel}>{"公開資訊"}</h1>
+      <List>
+        {sidebarOpenData.map((data, index) => (
           <ListItem button key={index} component={Link} to={data.path}>
             <ListItemIcon>{data.component}</ListItemIcon>
             <ListItemText primary={data.title} />

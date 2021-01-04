@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Checkbox from "@material-ui/core/Checkbox";
 import MaUTable from "@material-ui/core/Table";
@@ -24,7 +23,7 @@ import {
 
 const useStyles = makeStyles({});
 
-// const fakeID = [{ id: 1 }, { id: 2 }, { " id": 3 }];
+const fakeID = [{ id: 1 }, { id: 2 }, { " id": 3 }];
 
 const IndeterminateCheckbox = React.forwardRef(
   ({ indeterminate, ...rest }, ref) => {
@@ -155,11 +154,9 @@ const EnhancedTable = ({
           // The cell can use the individual row's getToggleRowSelectedProps method
           // to the render a checkbox
           Cell: ({ row }) => (
-            <>
-              <div>
-                <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-              </div>
-            </>
+            <div>
+              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+            </div>
           ),
         },
         ...columns,
@@ -224,11 +221,9 @@ const EnhancedTable = ({
               <TableRow {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
-                    <>
-                      <TableCell {...cell.getCellProps()}>
-                        {cell.render("Cell")}
-                      </TableCell>
-                    </>
+                    <TableCell {...cell.getCellProps()}>
+                      {cell.render("Cell")}
+                    </TableCell>
                   );
                 })}
               </TableRow>

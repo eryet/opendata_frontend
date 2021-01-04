@@ -1,17 +1,25 @@
 import { makeStyles } from "@material-ui/core/styles";
+import NCNU from "../../static/images/ncnu.jpg";
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    minHeight: "100vh",
+  loginimage: {
+    backgroundImage: `url(${NCNU})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    height: "100%",
   },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+  paper: {
+    textAlign: "center",
+    backgroundColor: "#fff",
+    border: "none",
+    borderRadius: "8px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1)",
+    boxSizing: "border-box",
+    padding: "30px",
+  },
+  loginfont: {
+    fontWeight: "bold",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -19,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    fontWeight: "bold",
   },
 }));
 
