@@ -1,12 +1,22 @@
 import React from "react";
-import { Container, Paper } from "@material-ui/core";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import IconButton from "@material-ui/core/IconButton";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+// Icon
+import StorageIcon from "@material-ui/icons/Storage";
+import Brightness1Icon from "@material-ui/icons/Brightness1";
+
 import { makeStyles } from "@material-ui/core/styles";
+
+// mock api
+import gatewayListAPI from "../../fakeapi/GatewayListAPI";
 
 const useStyles = makeStyles((theme) => ({
   gateway_card: {
@@ -18,58 +28,63 @@ const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
   },
+  good: {
+    fill: "#00FF00",
+  },
+  error: {
+    fill: "#FF0000",
+  },
 }));
-
-function createData(label, data) {
-  return { label, data };
-}
-
-const rows = [
-  createData("Gateway Name:", "Chi Nan Uni"),
-  createData("Gateway Status:", "Down"),
-  createData("Available Sensor:", "39"),
-  createData("Types Avaliable:", "5"),
-  createData("MAC Address:", "K4HATW562N"),
-];
 
 // map maybe not use????
 const FirstPage = () => {
   const classes = useStyles();
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+  };
+
   return (
     <>
-      <h1 className={classes.header}>Gateway Status</h1>
-      <Paper elevation={0}>
-        <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label="simple table">
-            <TableBody>
-              {console.log(rows)}
-              {rows.map((row) => (
-                <TableRow key={row.label}>
-                  <TableCell component="th" scope="row">
-                    {row.label}
-                  </TableCell>
-                  <TableCell align="left">
-                    {row.data === "Alive" || row.data === "Down" ? (
-                      <span
-                        style={{
-                          display: "inline-block",
-                          background:
-                            row.data === "Down" ? "#2C974B" : "#ff000042",
-                          padding: "0.3rem",
-                        }}
-                      >
-                        {row.data}
-                      </span>
-                    ) : (
-                      row.data
-                    )}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Paper>
+      <h1 className={classes.header}>Gateway List</h1>
+      <Card className={classes.root}>
+        <CardContent>
+          <Grid item xs={12} md={12}>
+            <Typography variant="h6">Avaliable Gateway</Typography>
+            <div className={classes.demo}>
+              <List component="nav">
+                {gatewayListAPI.gatewayList.map((data) => {
+                  return (
+                    <ListItem
+                      button
+                      selected={selectedIndex === data.id}
+                      onClick={(event) => handleListItemClick(event, data.id)}
+                    >
+                      <ListItemIcon>
+                        <StorageIcon />
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={data.name}
+                        secondary={data.description}
+                      />
+                      <ListItemSecondaryAction>
+                        <IconButton edge="end" aria-label="delete">
+                          <Brightness1Icon
+                            className={
+                              data.status === "0" ? classes.good : classes.error
+                            }
+                          />
+                        </IconButton>
+                      </ListItemSecondaryAction>
+                    </ListItem>
+                  );
+                })}
+              </List>
+            </div>
+          </Grid>
+        </CardContent>
+      </Card>
     </>
   );
 };

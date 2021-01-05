@@ -24,7 +24,8 @@ import Sensor from "./views/user/sensor/Sensor";
 import OpenGateWay from "./views/opendata/gateway/OpenGateway";
 import Group from "./views/user/group/Group";
 import Test from "./views/user/test/Test";
-import Group_test from "./views/user/group_test/group_test";
+import GroupTest from "./views/user/grouptest/GroupTest";
+import Profile from "./views/user/profile/Profile";
 
 // theme setup for general component
 const theme = createMuiTheme({
@@ -63,7 +64,7 @@ const App = () => {
             <UserDashboard component={<Gateway />} />
           </Route>
           <Route path="/gatewaygroup">
-            <UserDashboard component={<Group_test />} />
+            <UserDashboard component={<GroupTest />} />
           </Route>
           <Route path="/gateway/:id">
             <UserDashboard component={<Gateway />} />
@@ -73,6 +74,9 @@ const App = () => {
           </Route>
           <Route path="/dashboard">
             <UserDashboard component={<FirstPage />} />
+          </Route>
+          <Route path="/profile">
+            <UserDashboard component={<Profile />} />
           </Route>
           <Route path="/forgotpassword">
             <ForgotPassword />

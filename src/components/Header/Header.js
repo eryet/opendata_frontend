@@ -28,6 +28,7 @@ import MemorySharpIcon from "@material-ui/icons/MemorySharp";
 import TimelineSharpIcon from "@material-ui/icons/TimelineSharp";
 import NotificationsSharpIcon from "@material-ui/icons/NotificationsSharp";
 import AccountCircleSharpIcon from "@material-ui/icons/AccountCircleSharp";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const useStyles = makeStyles((theme) => ({
   navbarDisplayFlex: {
@@ -71,8 +72,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const navLinks = [
-  { title: `test`, path: `/dashboard` },
-  { title: `gateway`, path: `/gateway` },
+  { title: `首頁`, path: `/dashboard` },
+  { title: `GateWay`, path: `/gateway` },
 ];
 
 const sidebarTop = [
@@ -99,6 +100,14 @@ const sidebarOpenData = [
     title: `已公開的Gateway`,
     path: `/opengateway`,
     component: <MemorySharpIcon />,
+  },
+];
+
+const sidebarOther = [
+  {
+    title: "個人資料",
+    path: "/profile",
+    component: <AccountCircleIcon />,
   },
 ];
 
@@ -152,6 +161,14 @@ const Header = () => {
         ))}
       </List>
       <h1 className={classes.navbarLabel}>{"其他"}</h1>
+      <List>
+        {sidebarOther.map((data, index) => (
+          <ListItem button key={index} component={Link} to={data.path}>
+            <ListItemIcon>{data.component}</ListItemIcon>
+            <ListItemText primary={data.title} />
+          </ListItem>
+        ))}
+      </List>
     </div>
   );
 
