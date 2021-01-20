@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import List from "@material-ui/core/List";
@@ -47,17 +48,19 @@ const FirstPage = () => {
 
   return (
     <>
-      <h1 className={classes.header}>Gateway List</h1>
+      <h1 className={classes.header}>閘道器列表</h1>
       <Card className={classes.root}>
         <CardContent>
           <Grid item xs={12} md={12}>
-            <Typography variant="h6">Avaliable Gateway</Typography>
+            <Typography variant="h6">你擁有的閘道器</Typography>
             <div className={classes.demo}>
               <List component="nav">
                 {gatewayListAPI.gatewayList.map((data) => {
                   return (
                     <ListItem
                       button
+                      component={Link}
+                      to={`/gatewaydetail/${data.id}`}
                       selected={selectedIndex === data.id}
                       onClick={(event) => handleListItemClick(event, data.id)}
                     >
@@ -69,7 +72,7 @@ const FirstPage = () => {
                         secondary={data.description}
                       />
                       <ListItemSecondaryAction>
-                        <IconButton edge="end" aria-label="delete">
+                        <IconButton edge="end" aria-label="status">
                           <Brightness1Icon
                             className={
                               data.status === "0" ? classes.good : classes.error

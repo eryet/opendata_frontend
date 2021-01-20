@@ -17,6 +17,7 @@ import {
   Popover,
   Button,
   Typography,
+  Grid,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
@@ -29,6 +30,9 @@ import TimelineSharpIcon from "@material-ui/icons/TimelineSharp";
 import NotificationsSharpIcon from "@material-ui/icons/NotificationsSharp";
 import AccountCircleSharpIcon from "@material-ui/icons/AccountCircleSharp";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import SettingsIcon from "@material-ui/icons/Settings";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { ExitToApp } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   navbarDisplayFlex: {
@@ -71,10 +75,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const navLinks = [
-  { title: `首頁`, path: `/dashboard` },
-  { title: `GateWay`, path: `/gateway` },
-];
+const navLinks = [];
 
 const sidebarTop = [
   { title: `首頁`, path: `/dashboard`, component: <HomeIcon /> },
@@ -279,9 +280,33 @@ const Header = () => {
                   horizontal: "right",
                 }}
               >
-                <Typography className={classes.typography}>
-                  User Profile for user include link to setting
-                </Typography>
+                <Grid item xs={12} md={12}>
+                  <div className={classes.demo}>
+                    <List component="nav">
+                      <ListItem button onClick={() => {}}>
+                        <ListItemIcon>
+                          <AccountCircleIcon />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={"Eryet Chen"}
+                          secondary={"查看個人資料"}
+                        />
+                      </ListItem>
+                      <ListItem button onClick={() => {}}>
+                        <ListItemIcon>
+                          <SettingsIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={"設定"} />
+                      </ListItem>
+                      <ListItem button onClick={() => {}}>
+                        <ListItemIcon>
+                          <ExitToAppIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={"登出"} />
+                      </ListItem>
+                    </List>
+                  </div>
+                </Grid>
               </Popover>
             </>
           </div>

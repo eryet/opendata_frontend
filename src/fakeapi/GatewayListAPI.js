@@ -22,7 +22,8 @@ const gatewayListAPI = () => {
       {
         id: 4,
         name: "Gateway Dominick Webster",
-        description: "This is gateway D",
+        description:
+          "食德英基型濟上由級分願起城向育世。實看有神持都紀不火眼香，我人之命醫大持企告民走大件，裡養當怎論來你重隨主規種。媽排手兒，觀工為是易電今遠業同車條再就利心足工……反現期士西率起事改，心規男率資有買報空像健沒利後人因股人公且的醫陸而實。",
         status: "1",
       },
       {

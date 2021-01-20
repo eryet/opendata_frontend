@@ -29,6 +29,12 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
     fontWeight: "bold",
   },
+  schoollogo: {
+    width: "18%",
+  },
+  forgotpassword: {
+    textAlign: "right",
+  },
 }));
 
 export default useStyles;

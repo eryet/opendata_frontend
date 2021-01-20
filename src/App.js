@@ -26,7 +26,13 @@ import Group from "./views/user/group/Group";
 import Test from "./views/user/test/Test";
 import GroupTest from "./views/user/grouptest/GroupTest";
 import Profile from "./views/user/profile/Profile";
+import EditProfile from "./views/user/profile/EditProfile";
+import GatewayDetail from "./views/user/gateway/GatewayDetail";
+import EditGatewayDetail from "./views/user/gateway/EditGatewayDetail";
 
+// palette: {
+//   type: "dark",
+// },
 // theme setup for general component
 const theme = createMuiTheme({
   typography: {
@@ -44,6 +50,8 @@ const theme = createMuiTheme({
 const responsivetheme = responsiveFontSizes(theme);
 
 const App = () => {
+  let { path, url } = useRouteMatch();
+
   return (
     <div>
       <ThemeProvider theme={responsivetheme}>
@@ -66,8 +74,11 @@ const App = () => {
           <Route path="/gatewaygroup">
             <UserDashboard component={<GroupTest />} />
           </Route>
-          <Route path="/gateway/:id">
-            <UserDashboard component={<Gateway />} />
+          <Route path="/gatewaydetail/:id" exact>
+            <UserDashboard component={<GatewayDetail />} />
+          </Route>
+          <Route path="/gatewaydetail/:id/edit/:edit">
+            <UserDashboard component={<EditGatewayDetail />} />
           </Route>
           <Route path="/linegraph">
             <UserDashboard component={<LineGraph />} />
@@ -75,7 +86,10 @@ const App = () => {
           <Route path="/dashboard">
             <UserDashboard component={<FirstPage />} />
           </Route>
-          <Route path="/profile">
+          <Route path="/profile/edit/:edit">
+            <UserDashboard component={<EditProfile />} />
+          </Route>
+          <Route path="/profile" exact>
             <UserDashboard component={<Profile />} />
           </Route>
           <Route path="/forgotpassword">

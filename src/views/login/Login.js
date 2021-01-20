@@ -19,6 +19,9 @@ import Copyright from "./Copyright";
 // styles
 import useStyles from "./loginStyles";
 
+// school logo
+import schoollogo from "../../static/images/2x.png";
+
 const Login = () => {
   const classes = useStyles();
 
@@ -34,6 +37,11 @@ const Login = () => {
       >
         <CssBaseline />
         <div className={classes.paper}>
+          <img
+            src={schoollogo}
+            alt="NCNU school logo"
+            className={classes.schoollogo}
+          />
           <h1 className={classes.loginfont}>登入</h1>
           <form className={classes.form} noValidate>
             <TextField
@@ -58,6 +66,11 @@ const Login = () => {
               id="password"
               autoComplete="current-password"
             />
+            <Grid container>
+              <Grid item xs className={classes.forgotpassword}>
+                <a href="/forgotpassword">忘記密碼 ?</a>
+              </Grid>
+            </Grid>
             <Button
               component={Link}
               to={"/dashboard"}
@@ -69,11 +82,6 @@ const Login = () => {
             >
               登入
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <a href="/forgotpassword">忘記密碼</a>
-              </Grid>
-            </Grid>
           </form>
           <Box mt={8}>
             <Copyright />
