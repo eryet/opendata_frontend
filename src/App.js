@@ -31,6 +31,7 @@ import GatewayDetail from "./views/user/gateway/GatewayDetail";
 import EditGatewayDetail from "./views/user/gateway/EditGatewayDetail";
 import Announcement from "./views/announcement/Announcement";
 import AnnouncementDetail from "./views/announcement/AnnouncementDetail";
+import GroupListDetail from "./views/user/grouptest/GroupListDetail";
 
 // palette: {
 //   type: "dark",
@@ -64,9 +65,6 @@ const App = () => {
           <Route path="/opengateway">
             <UserDashboard component={<OpenGateWay />} />
           </Route>
-          <Route path="/sensor">
-            <UserDashboard component={<Sensor />} />
-          </Route>
           <Route path="/sensor/:id">
             <UserDashboard component={<Sensor />} />
           </Route>
@@ -75,6 +73,9 @@ const App = () => {
           </Route>
           <Route path="/gatewaygroup">
             <UserDashboard component={<GroupTest />} />
+          </Route>
+          <Route path="/gatewaygroupdetail/:id" exact>
+            <UserDashboard component={<GroupListDetail />} />
           </Route>
           <Route path="/gatewaydetail/:id" exact>
             <UserDashboard component={<GatewayDetail />} />
