@@ -29,6 +29,8 @@ import Profile from "./views/user/profile/Profile";
 import EditProfile from "./views/user/profile/EditProfile";
 import GatewayDetail from "./views/user/gateway/GatewayDetail";
 import EditGatewayDetail from "./views/user/gateway/EditGatewayDetail";
+import Announcement from "./views/announcement/Announcement";
+import AnnouncementDetail from "./views/announcement/AnnouncementDetail";
 
 // palette: {
 //   type: "dark",
@@ -69,7 +71,7 @@ const App = () => {
             <UserDashboard component={<Sensor />} />
           </Route>
           <Route path="/gateway">
-            <UserDashboard component={<Gateway />} />
+            <UserDashboard component={<FirstPage />} />
           </Route>
           <Route path="/gatewaygroup">
             <UserDashboard component={<GroupTest />} />
@@ -84,7 +86,7 @@ const App = () => {
             <UserDashboard component={<LineGraph />} />
           </Route>
           <Route path="/dashboard">
-            <UserDashboard component={<FirstPage />} />
+            <UserDashboard component={<Announcement />} />
           </Route>
           <Route path="/profile/edit/:edit">
             <UserDashboard component={<EditProfile />} />
@@ -94,6 +96,12 @@ const App = () => {
           </Route>
           <Route path="/forgotpassword">
             <ForgotPassword />
+          </Route>
+          <Route path="/announcement">
+            <Announcement />
+          </Route>
+          <Route path="/announcementdetail/:id" exact>
+            <UserDashboard component={<AnnouncementDetail />} />
           </Route>
           <Route path="/">
             <Login />

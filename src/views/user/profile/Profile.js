@@ -115,9 +115,6 @@ const Profile = () => {
                     className={classes.listtext}
                     primary={ProfileAPI.roles}
                   />
-                  <ListItemSecondaryAction>
-                    <NavigateNextIcon />
-                  </ListItemSecondaryAction>
                 </ListItem>
                 <ListItem
                   button
@@ -133,9 +130,6 @@ const Profile = () => {
                     className={classes.listtext}
                     primary={ProfileAPI.last_login}
                   />
-                  <ListItemSecondaryAction>
-                    <NavigateNextIcon />
-                  </ListItemSecondaryAction>
                 </ListItem>
                 <ListItem
                   button
@@ -151,9 +145,6 @@ const Profile = () => {
                     className={classes.listtext}
                     primary={ProfileAPI.email}
                   />
-                  <ListItemSecondaryAction>
-                    <NavigateNextIcon />
-                  </ListItemSecondaryAction>
                 </ListItem>
                 <ListItem
                   button
@@ -169,9 +160,6 @@ const Profile = () => {
                     className={classes.listtext}
                     primary={ProfileAPI.first_name}
                   />
-                  <ListItemSecondaryAction>
-                    <NavigateNextIcon />
-                  </ListItemSecondaryAction>
                 </ListItem>
                 <ListItem
                   button
@@ -187,9 +175,6 @@ const Profile = () => {
                     className={classes.listtext}
                     primary={ProfileAPI.last_name}
                   />
-                  <ListItemSecondaryAction>
-                    <NavigateNextIcon />
-                  </ListItemSecondaryAction>
                 </ListItem>
                 <ListItem
                   button
@@ -205,9 +190,6 @@ const Profile = () => {
                     className={classes.listtext}
                     primary={ProfileAPI.nickname}
                   />
-                  <ListItemSecondaryAction>
-                    <NavigateNextIcon />
-                  </ListItemSecondaryAction>
                 </ListItem>
                 <ListItem
                   button
@@ -228,9 +210,6 @@ const Profile = () => {
                     className={classes.listtext}
                     primary={ProfileAPI.phone_number}
                   />
-                  <ListItemSecondaryAction>
-                    <NavigateNextIcon />
-                  </ListItemSecondaryAction>
                 </ListItem>
                 <ListItem
                   button

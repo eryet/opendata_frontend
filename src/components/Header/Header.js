@@ -31,8 +31,12 @@ import NotificationsSharpIcon from "@material-ui/icons/NotificationsSharp";
 import AccountCircleSharpIcon from "@material-ui/icons/AccountCircleSharp";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import SettingsIcon from "@material-ui/icons/Settings";
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { ExitToApp } from "@material-ui/icons";
+import StorageIcon from "@material-ui/icons/Storage";
+
+// mock api
+import GatewayListAPI from "../../fakeapi/GatewayListAPI";
 
 const useStyles = makeStyles((theme) => ({
   navbarDisplayFlex: {
@@ -82,7 +86,7 @@ const sidebarTop = [
 ];
 
 const sidebarGateway = [
-  { title: `Gateway狀態`, path: `/gateway`, component: <StorageSharpIcon /> },
+  { title: `Gateway列表`, path: `/gateway`, component: <StorageSharpIcon /> },
   {
     title: `Gateway組別`,
     path: `/gatewaygroup`,
@@ -143,6 +147,17 @@ const Header = () => {
           </ListItem>
         ))}
       </List>
+      {/* <h1 className={classes.navbarLabel}>{"Gateway List"}</h1>
+      <List>
+        {GatewayListAPI.gatewayList.map((data, index) => (
+          <ListItem button key={index} component={Link} to={data.path}>
+            <ListItemIcon>
+              <StorageIcon />
+            </ListItemIcon>
+            <ListItemText primary={data.name} />
+          </ListItem>
+        ))}
+      </List> */}
       <h1 className={classes.navbarLabel}>{"圖表"}</h1>
       <List>
         {sidebarChart.map((data, index) => (

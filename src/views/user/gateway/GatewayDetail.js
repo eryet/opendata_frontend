@@ -26,6 +26,9 @@ import { useParams } from "react-router-dom";
 // mock api
 import GatewayDetailAPI from "../../../fakeapi/GatewayDetailAPI";
 
+// card component
+import SensorCard from "./Sensorcard";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "block",
@@ -62,257 +65,253 @@ const GatewayDetail = () => {
   const classes = useStyles();
   let { id } = useParams();
 
+  const idFilter = (data) => {
+    return [data.find((data) => data.id === `${id}`)];
+  };
+
   return (
     <>
-      <>
-        <h1 className={classes.header}>Gateway Detail</h1>
-        <Card className={classes.root}>
-          <CardContent>
-            <Paper elevation={0}>
-              <Box
-                display={{ xs: "none", sm: "none", md: "block", lg: "block" }}
-              >
-                <List component="nav" aria-label="profile">
-                  <ListItem
-                    button
-                    divider
-                    alignItems="flex-start"
-                    className={classes.listitem}
-                  >
-                    <ListItemText className={classes.listtext} secondary="ID" />
-                    <ListItemText
-                      className={classes.listtext}
-                      primary={GatewayDetailAPI.id}
-                    />
+      <h1 className={classes.header}>Gateway Detail</h1>
+      <Card className={classes.root}>
+        <CardContent>
+          <Paper elevation={0}>
+            <Box display={{ xs: "none", sm: "none", md: "block", lg: "block" }}>
+              <List component="nav" aria-label="profile">
+                <ListItem
+                  button
+                  divider
+                  alignItems="flex-start"
+                  className={classes.listitem}
+                >
+                  <ListItemText className={classes.listtext} secondary="ID" />
+                  <ListItemText
+                    className={classes.listtext}
+                    primary={GatewayDetailAPI.GatewayDetail.id}
+                  />
 
-                    <ListItemSecondaryAction>
-                      <NavigateNextIcon />
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                  <ListItem
-                    button
-                    divider
-                    alignItems="flex-start"
-                    className={classes.listitem}
-                    component={Link}
-                    to={{
-                      pathname: `/gatewaydetail/${GatewayDetailAPI.id}/edit/name`,
-                      state: { phonenumber: GatewayDetailAPI.name },
-                    }}
-                  >
-                    <ListItemText
-                      className={classes.listtext}
-                      secondary="NAME"
-                    />
-                    <ListItemText
-                      className={classes.listtext}
-                      primary={GatewayDetailAPI.name}
-                    />
-                    <ListItemSecondaryAction>
-                      <NavigateNextIcon />
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                  <ListItem
-                    button
-                    divider
-                    alignItems="flex-start"
-                    className={classes.listitem}
-                  >
-                    <ListItemText
-                      className={classes.listtext}
-                      secondary="DESCRIPTION"
-                    />
-                    <ListItemText
-                      className={classes.listtext}
-                      primary={GatewayDetailAPI.description}
-                    />
-                    <ListItemSecondaryAction>
-                      <NavigateNextIcon />
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                  <ListItem
-                    button
-                    divider
-                    alignItems="flex-start"
-                    className={classes.listitem}
-                  >
-                    <ListItemText
-                      className={classes.listtext}
-                      secondary="MAC_ADDRESSS"
-                    />
-                    <ListItemText
-                      className={classes.listtext}
-                      primary={GatewayDetailAPI.mac_address}
-                    />
-                    <ListItemSecondaryAction>
-                      <NavigateNextIcon />
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                  <ListItem
-                    button
-                    divider
-                    alignItems="flex-start"
-                    className={classes.listitem}
-                  >
-                    <ListItemText
-                      className={classes.listtext}
-                      secondary="TIMEZONE"
-                    />
-                    <ListItemText
-                      className={classes.listtext}
-                      primary={GatewayDetailAPI.timezone}
-                    />
-                    <ListItemSecondaryAction>
-                      <NavigateNextIcon />
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                  <ListItem
-                    button
-                    divider
-                    alignItems="flex-start"
-                    className={classes.listitem}
-                  >
-                    <ListItemText
-                      className={classes.listtext}
-                      secondary="LATITUDE"
-                    />
-                    <ListItemText
-                      className={classes.listtext}
-                      primary={GatewayDetailAPI.latitude}
-                    />
-                    <ListItemSecondaryAction>
-                      <NavigateNextIcon />
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                  <ListItem
-                    button
-                    divider
-                    alignItems="flex-start"
-                    className={classes.listitem}
-                  >
-                    <ListItemText
-                      className={classes.listtext}
-                      secondary="LONGTITUDE"
-                    />
-                    <ListItemText
-                      className={classes.listtext}
-                      primary={GatewayDetailAPI.longtitude}
-                    />
-                    <ListItemSecondaryAction>
-                      <NavigateNextIcon />
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                  <ListItem
-                    button
-                    divider
-                    alignItems="flex-start"
-                    className={classes.listitem}
-                  >
-                    <ListItemText
-                      className={classes.listtext}
-                      secondary="STATUS"
-                    />
-                    <ListItemText
-                      className={classes.listtext}
-                      primary={
-                        <Chip
-                          label={
-                            GatewayDetailAPI.status === "0" ? "Online" : "Down"
-                          }
+                  <ListItemSecondaryAction>
+                    <NavigateNextIcon />
+                  </ListItemSecondaryAction>
+                </ListItem>
+                <ListItem
+                  button
+                  divider
+                  alignItems="flex-start"
+                  className={classes.listitem}
+                  component={Link}
+                  to={{
+                    pathname: `/gatewaydetail/${GatewayDetailAPI.id}/edit/name`,
+                    state: { phonenumber: GatewayDetailAPI.name },
+                  }}
+                >
+                  <ListItemText className={classes.listtext} secondary="NAME" />
+                  <ListItemText
+                    className={classes.listtext}
+                    primary={GatewayDetailAPI.GatewayDetail.name}
+                  />
+                  <ListItemSecondaryAction>
+                    <NavigateNextIcon />
+                  </ListItemSecondaryAction>
+                </ListItem>
+                <ListItem
+                  button
+                  divider
+                  alignItems="flex-start"
+                  className={classes.listitem}
+                >
+                  <ListItemText
+                    className={classes.listtext}
+                    secondary="DESCRIPTION"
+                  />
+                  <ListItemText
+                    className={classes.listtext}
+                    primary={GatewayDetailAPI.GatewayDetail.description}
+                  />
+                  <ListItemSecondaryAction>
+                    <NavigateNextIcon />
+                  </ListItemSecondaryAction>
+                </ListItem>
+                <ListItem
+                  button
+                  divider
+                  alignItems="flex-start"
+                  className={classes.listitem}
+                >
+                  <ListItemText
+                    className={classes.listtext}
+                    secondary="MAC_ADDRESSS"
+                  />
+                  <ListItemText
+                    className={classes.listtext}
+                    primary={GatewayDetailAPI.GatewayDetail.mac_address}
+                  />
+                  <ListItemSecondaryAction>
+                    <NavigateNextIcon />
+                  </ListItemSecondaryAction>
+                </ListItem>
+                <ListItem
+                  button
+                  divider
+                  alignItems="flex-start"
+                  className={classes.listitem}
+                >
+                  <ListItemText
+                    className={classes.listtext}
+                    secondary="TIMEZONE"
+                  />
+                  <ListItemText
+                    className={classes.listtext}
+                    primary={GatewayDetailAPI.GatewayDetail.timezone}
+                  />
+                  <ListItemSecondaryAction>
+                    <NavigateNextIcon />
+                  </ListItemSecondaryAction>
+                </ListItem>
+                <ListItem
+                  button
+                  divider
+                  alignItems="flex-start"
+                  className={classes.listitem}
+                >
+                  <ListItemText
+                    className={classes.listtext}
+                    secondary="LATITUDE"
+                  />
+                  <ListItemText
+                    className={classes.listtext}
+                    primary={GatewayDetailAPI.GatewayDetail.latitude}
+                  />
+                  <ListItemSecondaryAction>
+                    <NavigateNextIcon />
+                  </ListItemSecondaryAction>
+                </ListItem>
+                <ListItem
+                  button
+                  divider
+                  alignItems="flex-start"
+                  className={classes.listitem}
+                >
+                  <ListItemText
+                    className={classes.listtext}
+                    secondary="LONGTITUDE"
+                  />
+                  <ListItemText
+                    className={classes.listtext}
+                    primary={GatewayDetailAPI.GatewayDetail.longtitude}
+                  />
+                  <ListItemSecondaryAction>
+                    <NavigateNextIcon />
+                  </ListItemSecondaryAction>
+                </ListItem>
+                <ListItem
+                  button
+                  divider
+                  alignItems="flex-start"
+                  className={classes.listitem}
+                >
+                  <ListItemText
+                    className={classes.listtext}
+                    secondary="STATUS"
+                  />
+                  <ListItemText
+                    className={classes.listtext}
+                    primary={
+                      <Chip
+                        label={
+                          GatewayDetailAPI.status === "0" ? "Online" : "Down"
+                        }
+                        className={
+                          GatewayDetailAPI.status === "0"
+                            ? classes.good
+                            : classes.error
+                        }
+                      />
+                    }
+                  />
+                  <ListItemSecondaryAction>
+                    <NavigateNextIcon />
+                  </ListItemSecondaryAction>
+                </ListItem>
+              </List>
+            </Box>
+            <Box display={{ xs: "block", sm: "block", md: "none", lg: "none" }}>
+              <List component="nav" aria-label="profile">
+                <ListItem
+                  button
+                  divider
+                  alignItems="flex-start"
+                  className={classes.listitem}
+                >
+                  <ListItemText
+                    className={classes.listtext}
+                    primary="ID"
+                    secondary={GatewayDetailAPI.id}
+                  />
+                  <ListItemSecondaryAction>
+                    <NavigateNextIcon />
+                  </ListItemSecondaryAction>
+                </ListItem>
+                <ListItem
+                  button
+                  divider
+                  alignItems="flex-start"
+                  className={classes.listitem}
+                >
+                  <ListItemText
+                    className={classes.listtext}
+                    primary="NAME"
+                    secondary={GatewayDetailAPI.name}
+                  />
+                  <ListItemSecondaryAction>
+                    <NavigateNextIcon />
+                  </ListItemSecondaryAction>
+                </ListItem>
+                <ListItem
+                  button
+                  divider
+                  alignItems="flex-start"
+                  className={classes.listitem}
+                >
+                  <ListItemText
+                    className={classes.listtext}
+                    primary="DESCRIPTION"
+                    secondary={GatewayDetailAPI.description}
+                  />
+                  <ListItemSecondaryAction>
+                    <NavigateNextIcon />
+                  </ListItemSecondaryAction>
+                </ListItem>
+                <ListItem
+                  button
+                  divider
+                  alignItems="flex-start"
+                  className={classes.listitem}
+                >
+                  <ListItemText
+                    className={classes.listtext}
+                    primary="STATUS"
+                    secondary={
+                      <IconButton edge="end" aria-label="status">
+                        <Brightness1Icon
                           className={
                             GatewayDetailAPI.status === "0"
                               ? classes.good
                               : classes.error
                           }
                         />
-                      }
-                    />
-                    <ListItemSecondaryAction>
-                      <NavigateNextIcon />
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                </List>
-              </Box>
-              <Box
-                display={{ xs: "block", sm: "block", md: "none", lg: "none" }}
-              >
-                <List component="nav" aria-label="profile">
-                  <ListItem
-                    button
-                    divider
-                    alignItems="flex-start"
-                    className={classes.listitem}
-                  >
-                    <ListItemText
-                      className={classes.listtext}
-                      primary="ID"
-                      secondary={GatewayDetailAPI.id}
-                    />
-                    <ListItemSecondaryAction>
-                      <NavigateNextIcon />
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                  <ListItem
-                    button
-                    divider
-                    alignItems="flex-start"
-                    className={classes.listitem}
-                  >
-                    <ListItemText
-                      className={classes.listtext}
-                      primary="NAME"
-                      secondary={GatewayDetailAPI.name}
-                    />
-                    <ListItemSecondaryAction>
-                      <NavigateNextIcon />
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                  <ListItem
-                    button
-                    divider
-                    alignItems="flex-start"
-                    className={classes.listitem}
-                  >
-                    <ListItemText
-                      className={classes.listtext}
-                      primary="DESCRIPTION"
-                      secondary={GatewayDetailAPI.description}
-                    />
-                    <ListItemSecondaryAction>
-                      <NavigateNextIcon />
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                  <ListItem
-                    button
-                    divider
-                    alignItems="flex-start"
-                    className={classes.listitem}
-                  >
-                    <ListItemText
-                      className={classes.listtext}
-                      primary="STATUS"
-                      secondary={
-                        <IconButton edge="end" aria-label="status">
-                          <Brightness1Icon
-                            className={
-                              GatewayDetailAPI.status === "0"
-                                ? classes.good
-                                : classes.error
-                            }
-                          />
-                        </IconButton>
-                      }
-                    />
-                    <ListItemSecondaryAction>
-                      <NavigateNextIcon />
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                </List>
-              </Box>
-            </Paper>
-          </CardContent>
-        </Card>
-      </>
+                      </IconButton>
+                    }
+                  />
+                  <ListItemSecondaryAction>
+                    <NavigateNextIcon />
+                  </ListItemSecondaryAction>
+                </ListItem>
+              </List>
+            </Box>
+          </Paper>
+        </CardContent>
+      </Card>
+      <SensorCard />
     </>
   );
 };
