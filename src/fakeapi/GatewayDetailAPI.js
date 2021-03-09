@@ -23,6 +23,66 @@ const GatewayDetailAPI = () => {
         description: "this is a description",
         type: "electric",
       },
+      {
+        id: "1",
+        name: "sensor1",
+        description: "this is a description",
+        type: "waterH",
+      },
+      {
+        id: "2",
+        name: "sensor2",
+        description: "this is a description",
+        type: "electric",
+      },
+      {
+        id: "1",
+        name: "sensor1",
+        description: "this is a description",
+        type: "waterH",
+      },
+      {
+        id: "2",
+        name: "sensor2",
+        description: "this is a description",
+        type: "electric",
+      },
+      {
+        id: "1",
+        name: "sensor1",
+        description: "this is a description",
+        type: "waterH",
+      },
+      {
+        id: "2",
+        name: "sensor2",
+        description: "this is a description",
+        type: "electric",
+      },
+      {
+        id: "1",
+        name: "sensor1",
+        description: "this is a description",
+        type: "waterH",
+      },
+      {
+        id: "2",
+        name: "sensor2",
+        description: "this is a description",
+        type: "electric",
+      },
+      {
+        id: "1",
+        name: "sensor1",
+        description: "this is a description",
+        type: "waterH",
+      },
+      {
+        id: "2",
+        name: "sensor2",
+        description: "this is a description",
+        type: "electric",
+      },
     ],
   };
 };
