@@ -12,7 +12,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
 import RadioGroup from "@material-ui/core/RadioGroup";
-import CheckBox from "@material-ui/core/CheckBox";
+import Radio from "@material-ui/core/Radio"
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 // iconm
@@ -82,7 +82,7 @@ const AddToGroupDialog = (props) => {
             <FormControlLabel
               value={option}
               key={option}
-              control={<CheckBox color="primary" />}
+              control={<Radio color="primary" />}
               label={option}
             />
           ))}

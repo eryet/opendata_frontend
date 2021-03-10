@@ -114,6 +114,11 @@ const sidebarOther = [
     path: "/profile",
     component: <AccountCircleIcon />,
   },
+  {
+    title: "個人設定",
+    path: "/usersettings",
+    component: <SettingsIcon/>,
+  }
 ];
 
 const Header = () => {
