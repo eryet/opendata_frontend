@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 // material ui
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -22,8 +22,16 @@ import useStyles from "./loginStyles";
 // school logo
 import schoollogo from "../../static/images/2x.png";
 
+// api
+import { LoginApi } from "../../api/userApi.js"
+
 const Login = () => {
   const classes = useStyles();
+  const [user, setUser] = useState({});
+  
+  useEffect(() => {
+    console.log("hi!")
+  })
 
   return (
     <div className={classes.loginimage}>
