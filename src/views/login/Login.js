@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // material ui
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -11,7 +11,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 // router
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 // component
 import Copyright from "./Copyright";
@@ -22,8 +22,56 @@ import useStyles from "./loginStyles";
 // school logo
 import schoollogo from "../../static/images/2x.png";
 
+// api
+import { LogIn, GetUser } from "../../api/LoginApi";
+import { ContactsOutlined } from "@material-ui/icons";
+
 const Login = () => {
   const classes = useStyles();
+  let history = useHistory();
+  const [loginInfo, setLoginInfo] = useState({
+    username: "",
+    password: "",
+  });
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+
+  // save state
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setLoginInfo((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  const doLogin = (event) => {
+    // login logic
+    event.preventDefault();
+    console.log(loginInfo);
+    // GetUser().then((response) => {
+    //   console.log(response);
+    // });
+    LogIn(loginInfo.username, loginInfo.password)
+      .then((response) => {
+        console.log(response);
+        history.push("/dashboard");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    if (
+      loginInfo.username.trim() &&
+      loginInfo.password.trim() &&
+      loginInfo.password.length >= 3
+    ) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [loginInfo.username, loginInfo.password]);
 
   return (
     <div className={classes.loginimage}>
@@ -43,7 +91,7 @@ const Login = () => {
             className={classes.schoollogo}
           />
           <h1 className={classes.loginfont}>登入</h1>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={doLogin}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -53,6 +101,8 @@ const Login = () => {
               label="使用者名稱"
               name="username"
               autoComplete="username"
+              value={loginInfo.username}
+              onChange={handleChange}
               autoFocus
             />
             <TextField
@@ -65,6 +115,8 @@ const Login = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={loginInfo.password}
+              onChange={handleChange}
             />
             <Grid container>
               <Grid item xs className={classes.forgotpassword}>
@@ -72,8 +124,8 @@ const Login = () => {
               </Grid>
             </Grid>
             <Button
-              component={Link}
-              to={"/dashboard"}
+              // component={Link}
+              // to={"/dashboard"}
               type="submit"
               fullWidth
               variant="contained"

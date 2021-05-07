@@ -52,6 +52,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 // sensor table with all sensor name, hyperlinked
+// uncomplete
+
 const Sensor = () => {
 	let { id } = useParams();
 	const classes = useStyles();

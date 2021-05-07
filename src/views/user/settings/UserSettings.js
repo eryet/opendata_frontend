@@ -19,8 +19,7 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { Link, useRouteMatch } from "react-router-dom";
 
 // mock api
-import ProfileAPI from "../../../fakeapi/ProfileAPI";
-import SettingsAPI from "../../../fakeapi/UserSettingsAPI"
+import SettingsAPI from "../../../fakeapi/UserSettingsAPI";
 import { EmojiObjects } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
@@ -75,9 +74,10 @@ const UserSettings = () => {
   //     </TableBody>
   //   </Table>
   // </TableContainer
+  console.log(SettingsAPI.language);
   return (
     <>
-      <h1 className={classes.header}>Profile</h1>
+      <h1 className={classes.header}>Settings</h1>
       <Card className={classes.root}>
         <CardContent>
           <Paper elevation={0}>
@@ -114,7 +114,7 @@ const UserSettings = () => {
                   />
                   <ListItemText
                     className={classes.listtext}
-                    primary={ProfileAPI.roles}
+                    primary={SettingsAPI.timezone}
                   />
                   <ListItemSecondaryAction>
                     <NavigateNextIcon />
