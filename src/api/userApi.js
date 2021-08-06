@@ -1,43 +1,44 @@
-import axios from "axios"
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-// axios api for user login
+// const hostname = "http://10.24.6.80:8000";
+const hostname = "http://127.0.0.1:8000";
 
-const server = "https://127.0.0.1/"
+const RegisterApi = () => {
+  axios.post({});
+};
 
-const LoginApi = (formData) => {
-    axios.post({
-      method: "post",
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data" }
-    })
-    .then((response) => {return response})
-    .catch((error) => {
-      console.log(error)
-      return error
-    })
-}
-
-const RegisterApi = (formData) => {
-  axios.post({})
-}
-
-const ForgetPasswordApi = () => {
- axios.post({}) 
-}
+/**
+ * Change user current password
+ * Server will validate data transfer
+ * @param {string} oldpassword - user old password
+ * @param {string} password  - user new password
+ * @param {string} password2 - reconfirm new password
+ * @returns {Promise} httpstatus == 200 === ok
+ */
+const ChangePasswordApi = (oldpassword, password, password2) => {
+  const userid = localStorage.getItem("user_id");
+  const formdata = new FormData();
+  formdata.append("oldpassword", oldpassword);
+  formdata.append("password", password);
+  formdata.append("password2", password2);
+  return axios.post(hostname + `/changepassword/${userid}/`, formdata);
+};
 
 // promise.all
 const ServerTimeApi = () => {
-  axios.get({})
-}
+  axios.get({});
+};
 
+/**
+ * Logout api to blacklist refresh token
+ * @returns {Promise} will return http 205 status code if success
+ */
 const LogoutApi = () => {
-  axios.get({})  
-}
+  const refresh_token = localStorage.getItem("refresh_token");
+  const formdata = new FormData();
+  formdata.append("refresh_token", refresh_token);
+  return axios.post(hostname + "/auth/logout/", formdata);
+};
 
-export {
-  LoginApi, 
-  RegisterApi,
-  ForgetPasswordApi,
-  LogoutApi,
-  ServerTimeApi,
-}
+export { RegisterApi, ChangePasswordApi, LogoutApi, ServerTimeApi };

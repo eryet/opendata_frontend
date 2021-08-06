@@ -4,12 +4,14 @@ import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormLabel from "@material-ui/core/FormLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
+import { GoogleLogin } from "react-google-login";
 // router
 import { Link, useHistory } from "react-router-dom";
 
@@ -23,8 +25,11 @@ import useStyles from "./loginStyles";
 import schoollogo from "../../static/images/2x.png";
 
 // api
-import { LogIn, GetUser } from "../../api/LoginApi";
-import { ContactsOutlined } from "@material-ui/icons";
+import { LogInApi, GetUserApi, googleLogInApi } from "../../api/LoginApi";
+import {
+  CompassCalibrationOutlined,
+  ContactsOutlined,
+} from "@material-ui/icons";
 
 const Login = () => {
   const classes = useStyles();
@@ -33,6 +38,7 @@ const Login = () => {
     username: "",
     password: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   // save state
@@ -44,19 +50,41 @@ const Login = () => {
     }));
   };
 
+  // const responseGoogle = (response) => {
+  //   const token = response.accessToken;
+  //   console.log(response);
+  //   googleLogInApi(token)
+  //     .then((response) => {
+  //       console.log(response.status);
+  //       localStorage.setItem("google_key", response.data.token);
+  //       history.push("/dashboard");
+  //     })
+  //     .catch((error) => console.log(error));
+  // };
+
   const doLogin = (event) => {
     // login logic
     event.preventDefault();
+    setErrorMessage("");
     console.log(loginInfo);
     // GetUser().then((response) => {
     //   console.log(response);
     // });
-    LogIn(loginInfo.username, loginInfo.password)
+    LogInApi(loginInfo.username, loginInfo.password)
       .then((response) => {
-        console.log(response);
-        history.push("/dashboard");
+        if (response.status === 200) {
+          console.log(response);
+          localStorage.setItem("refresh_token", response.data.refresh);
+          localStorage.setItem("access_token", response.data.access);
+          setErrorMessage("");
+          history.push("/dashboard");
+        }
       })
       .catch((error) => {
+        console.log(error.response.status);
+        if (error.response.status === 401) {
+          setErrorMessage("Username / Password are wrong !");
+        }
         console.log(error);
       });
   };
@@ -119,13 +147,20 @@ const Login = () => {
               onChange={handleChange}
             />
             <Grid container>
+              {/* <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="記住帳號"
+              /> */}
               <Grid item xs className={classes.forgotpassword}>
                 <a href="/forgotpassword">忘記密碼 ?</a>
               </Grid>
             </Grid>
+            <Box>
+              <Typography variant="body2" color="error" align="center">
+                {errorMessage}
+              </Typography>
+            </Box>
             <Button
-              // component={Link}
-              // to={"/dashboard"}
               type="submit"
               fullWidth
               variant="contained"
@@ -135,6 +170,13 @@ const Login = () => {
               登入
             </Button>
           </form>
+          {/* <GoogleLogin
+            clientId="889232614628-ursdelnh0h1sjlrb53nrdsqsq232vgul.apps.googleusercontent.com"
+            buttonText="以Google帳號登入"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={"single_host_origin"}
+          /> */}
           <Box mt={8}>
             <Copyright />
           </Box>
